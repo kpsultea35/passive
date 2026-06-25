@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Pawnest</title>
-  <meta name="description" content="Questions about an order or a product? The Pawnest team is here to help." />
+  <title>Contact — Pickwise</title>
+  <meta name="description" content="Got a product to suggest or a question about a pick? Get in touch with Pickwise." />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Contact — Pawnest" />
-  <meta property="og:description" content="Questions about an order or a product? The Pawnest team is here to help." />
+  <meta property="og:title" content="Contact — Pickwise" />
+  <meta property="og:description" content="Got a product to suggest or a question about a pick? Get in touch with Pickwise." />
   <meta property="og:type" content="website" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
   <header class="header">
     <div class="container header__inner">
-      <a class="brand" href="index.html"><span class="brand__mark">🐾</span><span class="brand__name">Pawnest</span></a>
+      <a class="brand" href="index.html"><span class="brand__mark">🛒</span><span class="brand__name" data-store-name>Pickwise</span></a>
       <nav class="nav" style="margin-left:auto">
-        <a href="index.html">Shop</a>
+        <a href="index.html">Picks</a>
         <a href="about.html">About</a>
-        <a href="policies.html">Shipping &amp; Returns</a>
+        <a href="policies.html">How we pick</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
@@ -27,7 +27,7 @@
 
   <main class="container page">
     <h1>Get in touch</h1>
-    <p class="lead">Question about an order, a product, or sizing? We're happy to help — a real person replies, usually within one business day.</p>
+    <p class="lead">Spotted a product we should review, or have a question about a pick? We'd love to hear it. <strong>Note:</strong> we don't sell products — for orders, shipping, or returns, please contact Amazon directly.</p>
 
     <div class="prose" style="max-width:560px">
       <!-- FREE contact form via Formspree:
@@ -38,10 +38,10 @@
       <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
         <div class="field"><label>Your name</label><input name="name" required placeholder="Jane Doe" /></div>
         <div class="field"><label>Email</label><input name="email" type="email" required placeholder="jane@email.com" /></div>
-        <div class="field"><label>Order number (optional)</label><input name="order" placeholder="e.g. #1024" /></div>
-        <div class="field"><label>Message</label><textarea name="message" rows="5" required placeholder="How can we help?"></textarea></div>
+        <div class="field"><label>Subject</label><input name="subject" placeholder="A product you should review…" /></div>
+        <div class="field"><label>Message</label><textarea name="message" rows="5" required placeholder="What's on your mind?"></textarea></div>
         <button class="btn btn--primary btn--full" type="submit">Send message →</button>
-        <p class="pay-note" id="formNote">Or email us directly at <a href="mailto:hello@pawnest.shop">hello@pawnest.shop</a></p>
+        <p class="pay-note" id="formNote">Or email us directly at <a data-support-email href="mailto:hello@pickwise.example">hello@pickwise.example</a></p>
       </form>
       <p id="thanks" class="faq" style="display:none">🎉 Thanks! Your message is on its way — we'll reply soon.</p>
     </div>
@@ -49,27 +49,29 @@
 
   <footer class="footer">
     <div class="container footer__inner">
-      <div><span class="brand__mark">🐾</span> <strong>Pawnest</strong><p class="muted">Everything your best friend deserves.</p></div>
+      <div><span class="brand__mark">🛒</span> <strong data-store-name>Pickwise</strong><p class="muted">Smart finds, honest picks.</p></div>
       <div class="footer__links">
-        <a href="index.html">Shop</a><a href="about.html">About</a><a href="policies.html">Shipping &amp; Returns</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+        <a href="index.html">Picks</a><a href="about.html">About</a><a href="policies.html">How we pick</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
       </div>
-      <p class="muted small">© <span id="year"></span> Pawnest.</p>
+    </div>
+    <div class="container">
+      <p class="muted small disclosure-foot">As an Amazon Associate we earn from qualifying purchases. <span data-store-name>Pickwise</span> is a participant in the Amazon Services LLC Associates Program.</p>
+      <p class="muted small">© <span id="year"></span> <span data-store-name>Pickwise</span>.</p>
     </div>
   </footer>
 
+  <script src="assets/js/store.js"></script>
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
     const form = document.getElementById("contactForm");
+    const fallbackEmail = "hello@pickwise.example";
     form.addEventListener("submit", async (e) => {
       // If Formspree isn't configured yet, fall back to a mailto so nothing is lost.
       if (form.action.includes("YOUR_FORM_ID")) {
         e.preventDefault();
         const d = new FormData(form);
-        const subj = encodeURIComponent("Pawnest enquiry from " + (d.get("name") || ""));
-        const body = encodeURIComponent(
-          `Name: ${d.get("name")}\nEmail: ${d.get("email")}\nOrder: ${d.get("order") || "-"}\n\n${d.get("message")}`
-        );
-        window.location.href = `mailto:hello@pawnest.shop?subject=${subj}&body=${body}`;
+        const subj = encodeURIComponent("Pickwise: " + (d.get("subject") || "message from " + (d.get("name") || "")));
+        const body = encodeURIComponent(`Name: ${d.get("name")}\nEmail: ${d.get("email")}\n\n${d.get("message")}`);
+        window.location.href = `mailto:${fallbackEmail}?subject=${subj}&body=${body}`;
         return;
       }
       // Configured: submit via fetch so the visitor stays on-site.
@@ -79,7 +81,7 @@
         if (res.ok) { form.style.display = "none"; document.getElementById("thanks").style.display = "block"; }
         else throw new Error("send failed");
       } catch {
-        document.getElementById("formNote").textContent = "Something went wrong — please email hello@pawnest.shop directly.";
+        document.getElementById("formNote").textContent = "Something went wrong — please email us directly.";
       }
     });
   </script>

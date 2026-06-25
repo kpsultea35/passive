@@ -3,59 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Pawnest</title>
-  <meta name="description" content="Pawnest curates the gear that makes life better for pets and the people who love them." />
+  <title>About — Pickwise</title>
+  <meta name="description" content="Pickwise finds the top-rated Amazon products worth your money — independently curated, honestly recommended." />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="About — Pawnest" />
-  <meta property="og:description" content="Pawnest curates the gear that makes life better for pets and the people who love them." />
+  <meta property="og:title" content="About — Pickwise" />
+  <meta property="og:description" content="Pickwise finds the top-rated Amazon products worth your money — independently curated, honestly recommended." />
   <meta property="og:type" content="website" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
   <header class="header">
     <div class="container header__inner">
-      <a class="brand" href="index.html"><span class="brand__mark">🐾</span><span class="brand__name">Pawnest</span></a>
+      <a class="brand" href="index.html"><span class="brand__mark">🛒</span><span class="brand__name" data-store-name>Pickwise</span></a>
       <nav class="nav" style="margin-left:auto">
-        <a href="index.html">Shop</a>
+        <a href="index.html">Picks</a>
         <a href="about.html">About</a>
-        <a href="policies.html">Shipping &amp; Returns</a>
+        <a href="policies.html">How we pick</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
   <main class="container page">
-    <h1>Made for pets. Loved by their people.</h1>
-    <p class="lead">Pawnest exists for one reason: our pets give us their whole hearts, and they deserve gear that gives a little back. We hunt down the products that actually make a difference — calmer sleep, easier walks, happier mealtimes — and skip the gimmicks.</p>
+    <h1>Less scrolling. Better picks.</h1>
+    <p class="lead">Amazon has everything — which is exactly the problem. Pickwise exists to cut through the endless listings, fake reviews, and look-alike junk, and surface the handful of products in each category that are genuinely worth buying.</p>
 
     <div class="prose">
       <h2>What we stand for</h2>
       <ul>
-        <li><strong>Curated, not crammed.</strong> Every product earns its spot. If we wouldn't give it to our own dog or cat, it's not in the shop.</li>
-        <li><strong>Honest pricing.</strong> Fair prices on quality gear, shipped straight to your door.</li>
-        <li><strong>Real support.</strong> A question, a worry, a "which size?" — a human reads every message.</li>
+        <li><strong>Curated, not crammed.</strong> Every product earns its spot. If we wouldn't buy it ourselves, it doesn't make the list.</li>
+        <li><strong>Top-rated only.</strong> We start from products with strong ratings and large, credible review counts — then weigh value, durability, and real-world feedback.</li>
+        <li><strong>No pay-to-play.</strong> Brands can't buy a spot. Our picks aren't sponsored placements.</li>
       </ul>
 
-      <h2>How we ship</h2>
-      <p>We partner with vetted suppliers who ship directly to you, which keeps our prices low and our range wide. Most orders arrive within 7–15 business days. You'll always get a tracking link so you know exactly where your order is.</p>
+      <h2>How we make money</h2>
+      <p>Pickwise is free to use. When you click a pick and buy on Amazon, Amazon pays us a small commission — at <strong>no extra cost to you</strong>. That's it. It keeps the lights on and keeps the site free, and it never changes which products we recommend. See <a href="policies.html">How we pick</a> for the full method and our affiliate disclosure.</p>
 
-      <h2>Happiness, guaranteed</h2>
-      <p>If something isn't right, we'll make it right. See our <a href="policies.html">Shipping &amp; Returns</a> page for the details, or just email us — we're friendly.</p>
+      <h2>Why buy through Amazon?</h2>
+      <p>Because you already trust it. Amazon handles the price, payment, shipping, tracking, returns, and customer service — we just help you find the right thing faster. We don't see your payment details and we never store your order.</p>
 
-      <p style="margin-top:30px"><a class="btn btn--primary" href="index.html#catalog">Browse the shop →</a></p>
+      <p style="margin-top:30px"><a class="btn btn--primary" href="index.html#catalog">Browse the picks →</a></p>
     </div>
   </main>
 
   <footer class="footer">
     <div class="container footer__inner">
-      <div><span class="brand__mark">🐾</span> <strong>Pawnest</strong><p class="muted">Everything your best friend deserves.</p></div>
+      <div><span class="brand__mark">🛒</span> <strong data-store-name>Pickwise</strong><p class="muted">Smart finds, honest picks.</p></div>
       <div class="footer__links">
-        <a href="index.html">Shop</a><a href="about.html">About</a><a href="policies.html">Shipping &amp; Returns</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+        <a href="index.html">Picks</a><a href="about.html">About</a><a href="policies.html">How we pick</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
       </div>
-      <p class="muted small">© <span id="year"></span> Pawnest.</p>
+    </div>
+    <div class="container">
+      <p class="muted small disclosure-foot">As an Amazon Associate we earn from qualifying purchases. <span data-store-name>Pickwise</span> is a participant in the Amazon Services LLC Associates Program. Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates.</p>
+      <p class="muted small">© <span id="year"></span> <span data-store-name>Pickwise</span>.</p>
     </div>
   </footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="assets/js/store.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
-# Pawnest — allow all crawlers
+# Pickwise — allow all crawlers
 User-agent: *
 Allow: /
 
-# Replace with your live domain once deployed
-Sitemap: https://pawnest.shop/sitemap.xml
+# Replace with your live domain once deployed (e.g. https://USERNAME.github.io/REPO/sitemap.xml)
+Sitemap: https://pickwise.example/sitemap.xml

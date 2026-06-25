@@ -1,9 +1,13 @@
-name: Deploy store to GitHub Pages
+name: Build & deploy Pickwise
 
 on:
   push:
-    branches: ["main", "claude/charming-cray-bhjoq2"]
+    branches: ["main", "claude/magical-bardeen-oygvkk"]
   workflow_dispatch:
+  schedule:
+    # Daily at 06:00 UTC — refreshes live Amazon data (if PA-API secrets are set)
+    # and rebuilds the sitemap so the store stays current hands-free.
+    - cron: "0 6 * * *"
 
 permissions:
   contents: read
@@ -23,12 +27,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
+
+      - name: Build (validate catalog, refresh data, generate sitemap)
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+          # Add these as repo secrets to enable automatic live price/rating refresh:
+          PAAPI_ACCESS_KEY: ${{ secrets.PAAPI_ACCESS_KEY }}
+          PAAPI_SECRET_KEY: ${{ secrets.PAAPI_SECRET_KEY }}
+          PAAPI_PARTNER_TAG: ${{ secrets.PAAPI_PARTNER_TAG }}
+        run: node scripts/build.mjs --refresh
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: "."
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4

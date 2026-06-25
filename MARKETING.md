@@ -1,83 +1,85 @@
-# 📣 Pawnest — Marketing Starter Kit
+# 📣 Pickwise — Affiliate Marketing Playbook
 
-Copy-paste ad copy, captions, and product blurbs to launch your store. Swap in your
-real store URL and tweak the voice to match your brand.
+Your store earns when people **click a pick and buy on Amazon**. So the whole game is
+traffic + trust. This is your starter kit: positioning, content angles, and a launch
+plan tuned for an Amazon affiliate site (not a dropshipping store).
 
 ---
 
 ## 🎯 Brand voice
-Warm, upbeat, pet-parent-to-pet-parent. Lead with the *feeling* (a calmer dog, an
-easier walk, less fur everywhere), not the spec sheet. Emojis welcome, not spammy.
+Helpful, sharp, and honest — like a friend who already did the research. Lead with
+*"here's the one worth buying and why,"* never hype. Trust is what converts affiliate
+clicks.
 
-**One-liner:** *Pawnest — everything your best friend deserves.*
+**One-liner:** *Pickwise — smart finds, honest picks.*
+
+---
+
+## 🧭 The affiliate growth model (read this first)
+- **You get paid per qualifying sale**, at no cost to the buyer. Commission rates vary
+  by category (roughly 1–4% for electronics, up to ~10% for some categories).
+- **Volume beats hype.** Your job is to rank for buyer-intent searches and capture
+  people who are *about to buy something anyway*.
+- **The fastest path:** target "best ___" and "___ vs ___" keywords where the searcher
+  has their wallet out, then send them to Amazon to close.
+
+---
+
+## 🔑 Content that earns clicks (best → good)
+1. **"Best of" roundups** — *"Best Air Fryers Under $100 (2026)"*. Highest intent. Each
+   product card here is one entry; expand into a blog post per roundup.
+2. **Comparisons** — *"Robot Vacuum vs. Stick Vacuum: which should you buy?"*
+3. **Problem-first guides** — *"How to set up smart lighting for under $40"* → links to
+   the LED strip pick.
+4. **Gift guides** — *"15 gifts under $25 that don't feel cheap."* Seasonal goldmine.
+5. **Single-product deep reviews** — long-tail, easy to rank, high conversion.
 
 ---
 
 ## 📱 Social captions (ready to post)
+Drive traffic to the site (link in bio), which then routes to Amazon.
 
-**Hook + product (TikTok / Reels / Shorts)**
-- "POV: your dog finally sleeps through the night 🐶💤 The Calming Donut Bed is the upgrade you didn't know you needed. → link in bio"
-- "If your cat ignores every toy you buy… try the one that plays *back*. 🐱 Self-rolling, auto-sleep, zero effort. #catsoftiktok"
-- "Walk hack: this no-pull harness stopped the dragging in ONE walk. Front-clip = game over for pulling. 🦮"
-- "Fur on everything? This roller has no tape, no refills, and never runs out. Watch it work ⬇️ #petsoftiktok"
+- "I tested 6 air fryers so you don't have to. Here's the only one worth buying 👇 #amazonfinds"
+- "This $30 gadget replaced my entire dumbbell rack. Home-gym people, you're welcome. 🏋️"
+- "Amazon finds that actually slap: the LED strips that make any room look 10x better ✨"
+- "POV: you stop overpaying for coffee because this frother turned your kitchen into a café ☕"
+- "Top-rated, no sponsored junk. Just the stuff worth your money → link in bio 🛒"
 
-**Carousel / static (Instagram / Facebook)**
-- "5 things every new puppy actually needs (#3 saved our couch) 🐾 → shop the list"
-- "Spoil them for less. Curated pet gear, free shipping over $40, shipped worldwide. 🛍️"
-
-**Engagement / poll**
-- "Cat or dog person? 🐱🐶 Drop a paw in the comments and we'll suggest the perfect starter kit."
+> ⚠️ **Disclosure is required.** On social, add `#ad` / `#affiliate` / "commissions
+> earned" wherever you share affiliate links. The site already discloses on every page.
 
 ---
 
-## 🛒 Facebook / Instagram ad copy
+## ✍️ SEO blog post template (expand any pick into a ranking post)
+> **# Best {Category} in 2026: Top {N} Picks Tested**
+> *Intro: the buyer's problem + "we compared X options."*
+> **## 1. {Product} — Best Overall** → image, 2–3 sentence verdict, pros/cons,
+> "Check price on Amazon" button (your affiliate link).
+> Repeat for each pick. Close with a short buyer's guide (what to look for) for SEO depth.
 
-**Ad 1 — Calming Bed (problem → solution)**
-> **Primary text:** Restless pup? The viral Calming Donut Bed wraps them in soft, supportive comfort so they (and you) finally sleep. Anxiety-easing design, machine-washable, loved by 5,000+ pet parents. 🐾
-> **Headline:** Better sleep for your best friend
-> **CTA:** Shop Now
-
-**Ad 2 — Grooming Brush (benefit-led)**
-> **Primary text:** Less fur on the couch, more cuddles on it. 🧹 The Self-Cleaning Slicker Brush removes loose fur and tangles in minutes — one click and the bristles wipe clean. Your vacuum will thank you.
-> **Headline:** The 1-click deshedding brush
-> **CTA:** Shop Now
-
-**Ad 3 — Collection (broad cold audience)**
-> **Primary text:** Curated gear for happier pets — calming beds, no-pull harnesses, enrichment toys, and more. Free shipping over $40, shipped worldwide. 🐶🐱
-> **Headline:** Everything your best friend deserves
-> **CTA:** Shop Now
-
----
-
-## 📧 Email / SMS
-
-**Welcome email (after signup)**
-> Subject: Welcome to the pack 🐾 (here's 10% off)
-> Hey {{name}}! Thanks for joining Pawnest. Here's 10% off your first order — because a happy pet starts with the right gear. Code: WELCOME10. Browse the bestsellers → {{link}}
-
-**Abandoned cart**
-> Subject: Did you forget something? 🐶
-> Your cart misses you. The {{product}} is still waiting — grab it before it sells out. Free shipping over $40. → {{link}}
-
----
-
-## ✍️ SEO product descriptions
-Short, benefit-first descriptions live in `data/products.json`. For SEO blog/product
-pages, expand each like this template:
-
-> **{Product} — {core benefit in 6 words}.** {1 sentence on the problem it solves}.
-> {1–2 sentences on standout features}. {Reassurance: materials, washable, sizing}.
-> Perfect for {audience}. Free shipping over $40, 30-day happiness guarantee.
+Reuse the blurbs and "Why we picked it" bullets already in `data/products.json` as the
+seed for each entry.
 
 ---
 
 ## 🚀 Free launch checklist
-- [ ] Replace placeholder store URL everywhere (sitemap.xml, robots.txt, og:url)
-- [ ] Add your Stripe/PayPal payment link to each product `checkoutUrl` (see README)
-- [ ] Set up the free Formspree contact form (see `contact.html`)
-- [ ] Create free social accounts (TikTok, Instagram) and post 3 product videos
-- [ ] Fill in your business name/address in privacy.html & terms.html
-- [ ] Share your link, pin a bestseller, and reply to every comment fast
+- [ ] Get approved for **Amazon Associates** (associate-program.amazon.com) and copy your tag (`yourname-20`).
+- [ ] Put your tag in `data/products.json` → `store.amazonTag`.
+- [ ] Replace the placeholder ASINs with **real ASINs** of products you want to promote.
+- [ ] Replace the store URL in `sitemap.xml`, `robots.txt`, and `og:` tags (or let CI set it).
+- [ ] Set up the free Formspree contact form (see `contact.html`).
+- [ ] Fill in your name/business in `privacy.html` & `terms.html`.
+- [ ] **Make 3 qualifying sales within 180 days** to keep your Associates account active.
+- [ ] Publish 3–5 "best of" posts and pin them; share to Pinterest, Reddit (follow rules), and a niche YouTube/TikTok.
 
-> Free traffic to start: organic TikTok/Reels, pet subreddits & Facebook groups (follow
-> their self-promo rules), Pinterest pins, and a link in every social bio.
+> **Where the first sales come from:** Pinterest pins (huge for product roundups),
+> SEO blog posts targeting "best ___" keywords, niche subreddits/Facebook groups, and
+> short-form video reviews. All free.
+
+---
+
+## 📈 Once you're earning
+- Add **PA-API** keys as repo secrets to auto-refresh prices/ratings daily (see README).
+- Double down on whichever roundup converts best — expand it, update it, build internal links to it.
+- Apply to other affiliate programs (Walmart, Target, niche brands) for products Amazon
+  doesn't carry, using the same card format.

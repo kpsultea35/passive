@@ -149,6 +149,24 @@ img { display: block; max-width: 100%; }
 .price { font-size: 1.2rem; font-weight: 850; }
 .compare { color: var(--muted); text-decoration: line-through; font-size: .9rem; }
 .card .btn { margin-top: 4px; }
+.card__blurb { color: var(--muted); font-size: .88rem; margin: 2px 0 8px; flex: 1; }
+
+/* ===== Amazon CTA + affiliate bits ===== */
+.btn--amazon {
+  background: linear-gradient(135deg, #ffd814, #ffb300);
+  color: #1a1a1a; box-shadow: 0 10px 22px rgba(255, 168, 0, .32);
+}
+.btn--amazon:hover { filter: brightness(1.04); }
+.link-more {
+  background: none; border: 0; color: var(--brand-2); font-weight: 650;
+  font-size: .82rem; cursor: pointer; padding: 8px 0 2px; text-align: center;
+}
+.link-more:hover { text-decoration: underline; }
+.modal__h3 { font-size: 1rem; margin: 18px 0 8px; }
+.pros { padding-left: 18px; margin: 0 0 18px; }
+.pros li { margin: 5px 0; color: var(--text); opacity: .9; font-size: .92rem; }
+.disclosure-mini { margin-top: 12px; }
+.disclosure-foot { max-width: 760px; margin: 8px 0 14px; line-height: 1.5; }
 
 /* ===== How it works ===== */
 .how { padding: 50px 0; }

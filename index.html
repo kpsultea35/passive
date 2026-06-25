@@ -3,41 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pawnest — Everything your best friend deserves</title>
-  <meta name="description" content="Curated pet products — calming beds, no-pull harnesses, grooming tools, and more. Free shipping over $40, shipped worldwide." />
+  <title>Pickwise — Smart finds, honest picks</title>
+  <meta name="description" content="Hand-picked, top-rated Amazon finds across tech, home, kitchen, fitness and more. We test the lists so you buy with confidence." />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Pawnest — Everything your best friend deserves" />
-  <meta property="og:description" content="Curated pet products — calming beds, no-pull harnesses, grooming tools, and more. Free shipping over $40, shipped worldwide." />
+  <meta property="og:title" content="Pickwise — Smart finds, honest picks" />
+  <meta property="og:description" content="Hand-picked, top-rated Amazon finds across tech, home, kitchen, fitness and more." />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Pawnest" />
+  <meta property="og:site_name" content="Pickwise" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#14b8a6" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-  <!-- Announcement bar -->
-  <div class="announce" id="announce">✦ Free worldwide shipping on orders over <span data-free-ship></span> — limited time</div>
+  <!-- Affiliate disclosure (FTC + Amazon Associates requirement) -->
+  <div class="announce" id="announce">As an Amazon Associate we earn from qualifying purchases — at no extra cost to you.</div>
 
   <!-- Header -->
   <header class="header">
     <div class="container header__inner">
       <a class="brand" href="#top">
-        <span class="brand__mark">🐾</span>
-        <span class="brand__name" data-store-name>Pawnest</span>
+        <span class="brand__mark">🛒</span>
+        <span class="brand__name" data-store-name>Pickwise</span>
       </a>
 
       <div class="search">
-        <input type="search" id="search" placeholder="Search products…" aria-label="Search products" />
+        <input type="search" id="search" placeholder="Search picks…" aria-label="Search picks" />
       </div>
 
       <nav class="nav">
-        <a href="#catalog">Shop</a>
+        <a href="#catalog">Picks</a>
         <a href="about.html">About</a>
-        <a href="policies.html">Shipping &amp; Returns</a>
-        <button class="cart-btn" id="cartBtn" aria-label="Open cart">
-          🛍️ <span class="cart-count" id="cartCount">0</span>
-        </button>
+        <a href="policies.html">How we pick</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -47,25 +45,25 @@
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__copy">
-          <p class="eyebrow">New season drop</p>
-          <h1 class="hero__title" data-store-tagline>Curated gadgets & home finds, shipped worldwide</h1>
-          <p class="hero__sub">Trending products, honest prices, fast checkout. No subscriptions, no nonsense.</p>
+          <p class="eyebrow">Independently reviewed</p>
+          <h1 class="hero__title" data-store-tagline>Smart finds, honest picks</h1>
+          <p class="hero__sub">We dig through thousands of top-rated Amazon products and surface only the ones worth your money. Tap any pick to buy straight from Amazon — fast shipping, easy returns, all handled by Amazon.</p>
           <div class="hero__cta">
-            <a href="#catalog" class="btn btn--primary">Shop the collection</a>
+            <a href="#catalog" class="btn btn--primary">Browse the picks</a>
             <a href="#how" class="btn btn--ghost">How it works</a>
           </div>
           <div class="trust">
-            <span>🔒 Secure checkout</span>
-            <span>🚚 Worldwide shipping</span>
-            <span>↩️ 30-day returns</span>
+            <span>⭐ Only 4.5★+ products</span>
+            <span>📦 Ships &amp; sold by Amazon</span>
+            <span>🔍 No sponsored placements</span>
           </div>
         </div>
         <div class="hero__art" aria-hidden="true">
           <div class="blob"></div>
           <div class="hero__cards">
-            <div class="float-card f1">⭐ 4.7 avg rating</div>
-            <div class="float-card f2">🔥 Trending now</div>
-            <div class="float-card f3">📦 12k+ orders shipped</div>
+            <div class="float-card f1">⭐ Top-rated only</div>
+            <div class="float-card f2">🛒 Buy on Amazon</div>
+            <div class="float-card f3">🔍 Honestly curated</div>
           </div>
         </div>
       </div>
@@ -79,11 +77,11 @@
     <!-- Catalog -->
     <section class="container" id="catalog">
       <div class="section-head">
-        <h2>Shop all products</h2>
+        <h2>This week's picks</h2>
         <span class="muted" id="resultCount"></span>
       </div>
       <div class="grid" id="productGrid">
-        <div class="loading">Loading products…</div>
+        <div class="loading">Loading picks…</div>
       </div>
     </section>
 
@@ -91,9 +89,9 @@
     <section class="container how" id="how">
       <h2>How it works</h2>
       <div class="how__grid">
-        <div class="how__step"><span class="how__num">1</span><h3>Browse & add to cart</h3><p>Pick from curated, trend-tested products. Everything ships directly to your door.</p></div>
-        <div class="how__step"><span class="how__num">2</span><h3>Secure checkout</h3><p>Pay safely with card or PayPal. Your details are encrypted end-to-end.</p></div>
-        <div class="how__step"><span class="how__num">3</span><h3>Tracked delivery</h3><p>Get a tracking link by email and watch your order make its way to you.</p></div>
+        <div class="how__step"><span class="how__num">1</span><h3>We curate</h3><p>We sort top-rated products by reviews, ratings, and real-world value — then keep only the ones we'd actually buy.</p></div>
+        <div class="how__step"><span class="how__num">2</span><h3>You tap "Check price"</h3><p>Every pick links straight to its Amazon page, where you see the current price and details.</p></div>
+        <div class="how__step"><span class="how__num">3</span><h3>Amazon handles the rest</h3><p>You buy, ship, and return through Amazon — same trusted checkout you already use. We may earn a small commission.</p></div>
       </div>
     </section>
   </main>
@@ -101,45 +99,29 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div>
-        <span class="brand__mark">🐾</span>
-        <strong data-store-name>Pawnest</strong>
-        <p class="muted">Everything your best friend deserves.</p>
+        <span class="brand__mark">🛒</span>
+        <strong data-store-name>Pickwise</strong>
+        <p class="muted">Smart finds, honest picks.</p>
       </div>
       <div class="footer__links">
-        <a href="#catalog">Shop</a>
+        <a href="#catalog">Picks</a>
         <a href="about.html">About</a>
-        <a href="policies.html">Shipping &amp; Returns</a>
+        <a href="policies.html">How we pick</a>
         <a href="contact.html">Contact</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
       </div>
-      <p class="muted small">© <span id="year"></span> <span data-store-name>Pawnest</span>.</p>
+    </div>
+    <div class="container">
+      <p class="muted small disclosure-foot">As an Amazon Associate we earn from qualifying purchases. <span data-store-name>Pickwise</span> is a participant in the Amazon Services LLC Associates Program. Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates. Product prices and availability are accurate as of the date/time shown on Amazon and are subject to change.</p>
+      <p class="muted small">© <span id="year"></span> <span data-store-name>Pickwise</span>.</p>
     </div>
   </footer>
-
-  <!-- Cart drawer -->
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-  <aside class="drawer" id="cartDrawer" aria-label="Shopping cart">
-    <div class="drawer__head">
-      <h3>Your cart</h3>
-      <button class="icon-btn" id="closeCart" aria-label="Close cart">✕</button>
-    </div>
-    <div class="drawer__body" id="cartItems"></div>
-    <div class="drawer__foot">
-      <div class="ship-note" id="shipNote"></div>
-      <div class="subtotal"><span>Subtotal</span><strong id="cartSubtotal">$0.00</strong></div>
-      <button class="btn btn--primary btn--full" id="checkoutBtn" disabled>Checkout</button>
-      <p class="muted small center">Taxes & shipping calculated at checkout.</p>
-    </div>
-  </aside>
 
   <!-- Product quick-view modal -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal" id="productModal" role="dialog" aria-modal="true"></div>
   </div>
-
-  <!-- Toast -->
-  <div class="toast" id="toast"></div>
 
   <script src="assets/js/store.js"></script>
 </body>
