@@ -119,6 +119,20 @@ Zendrop, Spocket, AutoDS. Copy the product image, write your own description, an
 your `price` above supplier cost — the gap is your profit. **Dropshipping flow:** customer
 pays → you order from the supplier shipping to their address → supplier ships direct → you keep the margin.
 
+### ⚡ Fast import: `admin/import.html`
+A private, no-backend tool to turn a supplier page into store JSON:
+1. Open `admin/import.html` (run a local server, then visit `/admin/import.html`).
+2. **Drag the "Import to Pawnest" bookmarklet** to your bookmarks bar.
+3. On any product page (AliExpress, CJ, etc.), click the bookmarklet — it reads that
+   page's own title/image/price (no server scraping, no blocks) and pre-fills the form,
+   suggesting a 2× markup. Set your price, **rewrite the description**, and click *Add*.
+4. *Load current store products* to merge, then *Download products.json* — it keeps your
+   store settings. Drop the file into `data/` and you're done.
+
+> The importer is `noindex` + blocked in `robots.txt` so it never appears publicly.
+> Only import products you have the right to resell, and confirm the supplier allows
+> using their images.
+
 ---
 
 ## 🎨 Make it your brand
@@ -140,6 +154,9 @@ pays → you order from the supplier shipping to their address → supplier ship
 ├── 404.html                 # friendly not-found page
 ├── robots.txt, sitemap.xml  # SEO basics (set your live URL)
 ├── MARKETING.md             # ad copy, captions & launch checklist
+├── TIKTOK-SCRIPTS.md        # faceless TikTok scripts + legal footage sources
+├── admin/import.html        # private product importer (URL → product JSON)
+├── manifest.webmanifest     # PWA install metadata
 ├── assets/
 │   ├── css/styles.css        # warm, responsive theme
 │   └── js/store.js           # catalog, cart, checkout — zero dependencies

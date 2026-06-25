@@ -1,6 +1,7 @@
 # Pawnest — allow all crawlers
 User-agent: *
 Allow: /
+Disallow: /admin/
 
 # Replace with your live domain once deployed
 Sitemap: https://pawnest.shop/sitemap.xml
