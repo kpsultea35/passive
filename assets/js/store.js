@@ -46,6 +46,21 @@ function buyAttrs(p) {
   return `href="${esc(amazonLink(p))}" target="_blank" rel="sponsored nofollow noopener" data-buy="${esc(p.id)}"`;
 }
 
+/* Wire up any hand-written affiliate links on the page (e.g. in blog posts).
+   Mark an <a> with data-aff and a data-asin, data-id, data-name, or data-url:
+     <a data-aff data-id="air-fryer">Check price on Amazon →</a>
+   The correct tagged link is built from the store config so there's one
+   source of truth for your Associates tag. */
+function enhanceAffiliateLinks() {
+  $$("a[data-aff]").forEach((a) => {
+    const byId = a.dataset.id && State.products.find((p) => p.id === a.dataset.id);
+    const p = byId || { asin: a.dataset.asin, name: a.dataset.name, amazonUrl: a.dataset.url };
+    a.href = amazonLink(p);
+    a.target = "_blank";
+    a.rel = "sponsored nofollow noopener";
+  });
+}
+
 // Graceful image fallback — if a product photo fails to load, show a branded tile
 function imgTag(p, extraClass = "") {
   return `<img class="${extraClass}" src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy"
@@ -59,10 +74,22 @@ window.imgFallback = function (img) {
 };
 
 /* ---------- Boot ---------- */
+// Works from the site root and from /blog/ subpages alike.
+async function loadData() {
+  for (const path of ["data/products.json", "../data/products.json"]) {
+    try {
+      const res = await fetch(path);
+      if (res.ok) return await res.json();
+    } catch {
+      /* try next path */
+    }
+  }
+  throw new Error("products.json not found");
+}
+
 async function init() {
   try {
-    const res = await fetch("data/products.json");
-    const data = await res.json();
+    const data = await loadData();
     State.store = data.store || {};
     State.products = data.products || [];
   } catch (err) {
@@ -75,6 +102,7 @@ async function init() {
   }
 
   applyStoreBranding();
+  enhanceAffiliateLinks();
   if ($("#filters")) buildFilters();
   if ($("#productGrid")) filterProducts();
   bindEvents();

@@ -34,6 +34,10 @@ const SITEMAP = join(ROOT, "sitemap.xml");
 
 const STATIC_PAGES = [
   { loc: "", changefreq: "daily", priority: "1.0" },
+  { loc: "blog/index.html", changefreq: "weekly", priority: "0.8" },
+  { loc: "blog/best-air-fryers-and-kitchen-gadgets.html", changefreq: "weekly", priority: "0.7" },
+  { loc: "blog/best-home-gym-under-100.html", changefreq: "weekly", priority: "0.7" },
+  { loc: "blog/best-tech-gifts-under-50.html", changefreq: "weekly", priority: "0.7" },
   { loc: "about.html", changefreq: "monthly", priority: "0.6" },
   { loc: "policies.html", changefreq: "monthly", priority: "0.6" },
   { loc: "contact.html", changefreq: "monthly", priority: "0.5" },
