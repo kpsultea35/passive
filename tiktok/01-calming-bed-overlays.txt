@@ -1,0 +1,14 @@
+SCRIPT 01 — CALMING DONUT BED — ON-SCREEN TEXT
+Canvas 1080x1920. Keep all text out of the bottom 20%. White bold font + soft shadow.
+
+[00:00 - 00:03] POSITION: TOP
+POV: your rescue can't settle at night 😢
+
+[00:03 - 00:07] POSITION: TOP
+Then we tried the calming bed
+
+[00:07 - 00:10] POSITION: CENTER
+The raised rim = security
+
+[00:10 - 00:12] POSITION: CENTER
+Out cold in 5 minutes 😴

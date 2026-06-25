@@ -129,6 +129,16 @@ A private, no-backend tool to turn a supplier page into store JSON:
 4. *Load current store products* to merge, then *Download products.json* — it keeps your
    store settings. Drop the file into `data/` and you're done.
 
+**Bulk CSV import:** the same tool has a **CSV panel** for AliExpress / CJ / DSers
+exports. Upload or paste the CSV, set a markup multiplier (default 2×), and it
+auto-detects the columns (name, price, image, description, category, reviews…), handles
+quoted fields and multi-image cells, and imports every row at once.
+
+### 🎬 Faceless TikTok content
+- `TIKTOK-SCRIPTS.md` — 8 full scripts, hook bank, hashtags, and the legal footage guide.
+- `tiktok/` — CapCut-ready files for the first 3: frame-by-frame **shotlists**, **overlay
+  text** with timecodes, and importable **`.srt`** captions. See `tiktok/README.md`.
+
 > The importer is `noindex` + blocked in `robots.txt` so it never appears publicly.
 > Only import products you have the right to resell, and confirm the supplier allows
 > using their images.
@@ -155,7 +165,8 @@ A private, no-backend tool to turn a supplier page into store JSON:
 ├── robots.txt, sitemap.xml  # SEO basics (set your live URL)
 ├── MARKETING.md             # ad copy, captions & launch checklist
 ├── TIKTOK-SCRIPTS.md        # faceless TikTok scripts + legal footage sources
-├── admin/import.html        # private product importer (URL → product JSON)
+├── tiktok/                  # CapCut-ready shotlists, text overlays & .srt captions (scripts 1–3)
+├── admin/import.html        # private importer: bookmarklet + bulk CSV → product JSON
 ├── manifest.webmanifest     # PWA install metadata
 ├── assets/
 │   ├── css/styles.css        # warm, responsive theme

@@ -47,6 +47,22 @@
       <p class="hint">⚠️ Only import products you have the right to resell, and confirm the supplier permits using their images. Always set your own price and rewrite the description.</p>
     </div>
 
+    <div class="panel" style="margin:18px 0">
+      <h2>①½ Bulk import from CSV <span class="tag">AliExpress / CJ / DSers export</span></h2>
+      <p class="hint">Upload or paste a CSV export. Columns are auto-detected (name, price, image, description, category, reviews…). Set a markup and import every row at once.</p>
+      <input type="file" id="csvFile" accept=".csv,text/csv" />
+      <textarea id="csvText" rows="4" placeholder="…or paste CSV here (first row must be the headers)"></textarea>
+      <div class="row">
+        <div><label>Price markup × (supplier cost → your price)</label><input id="csvMarkup" type="number" step="0.1" value="2" /></div>
+        <div><label>Default category (if none in file)</label><input id="csvCat" placeholder="Shop" /></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn--ghost" id="csvPreview">Parse &amp; preview</button>
+        <button class="btn btn--primary" id="csvImport">Import all rows</button>
+      </div>
+      <div id="csvReport" class="hint" style="margin-top:10px"></div>
+    </div>
+
     <div class="grid2">
       <!-- FORM -->
       <div class="panel">
@@ -237,6 +253,115 @@
       "window.open('" + importUrl + "?prefill='+encodeURIComponent(JSON.stringify(d)),'_blank');})();";
     $("#bookmarklet").setAttribute("href", bm);
     $("#bmCode").value = bm;
+
+    // ---- Bulk CSV import (AliExpress / CJ / DSers exports) ----
+    function parseCSV(text) {
+      const rows = []; let row = [], cur = "", q = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i], n = text[i + 1];
+        if (q) {
+          if (c === '"' && n === '"') { cur += '"'; i++; }
+          else if (c === '"') q = false;
+          else cur += c;
+        } else {
+          if (c === '"') q = true;
+          else if (c === ",") { row.push(cur); cur = ""; }
+          else if (c === "\r") { /* skip */ }
+          else if (c === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; }
+          else cur += c;
+        }
+      }
+      if (cur !== "" || row.length) { row.push(cur); rows.push(row); }
+      return rows.filter((r) => r.some((c) => c.trim() !== ""));
+    }
+    const norm = (h) => (h || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    function detectMap(headers) {
+      const H = headers.map(norm);
+      const find = (cands) => {
+        let i = H.findIndex((h) => cands.includes(h));
+        if (i >= 0) return i;
+        return H.findIndex((h) => cands.some((c) => h.includes(c)));
+      };
+      return {
+        name: find(["name", "title", "producttitle", "productname", "itemname"]),
+        compareAt: find(["compareat", "originalprice", "listprice", "msrp", "marketprice", "oldprice", "regularprice"]),
+        price: find(["price", "saleprice", "cost", "sellingprice", "productprice", "unitprice"]),
+        image: find(["image", "images", "imageurl", "mainimage", "imagesrc", "picture", "mainimageurl", "imageurls"]),
+        description: find(["description", "desc", "productdescription", "summary", "detail"]),
+        category: find(["category", "type", "producttype", "categoryname"]),
+        rating: find(["rating", "stars", "averagerating"]),
+        reviews: find(["reviews", "reviewcount", "orders", "numreviews", "sales", "ordercount"]),
+      };
+    }
+    const cellNum = (v) => { const s = String(v || "").replace(/[^0-9.]/g, ""); if (s === "") return undefined; const n = Number(s); return isNaN(n) ? undefined : n; };
+    const firstImage = (v) => String(v || "").split(/[;|\n]/)[0].trim();
+
+    function csvToProducts(text) {
+      const rows = parseCSV(text);
+      if (rows.length < 2) return { products: [], map: {}, headers: [] };
+      const headers = rows[0];
+      const map = detectMap(headers);
+      const markup = Number($("#csvMarkup").value) || 1;
+      const defCat = $("#csvCat").value.trim() || "Shop";
+      const get = (r, key) => (map[key] >= 0 ? r[map[key]] : "");
+      const out = rows.slice(1).map((r) => {
+        const name = (get(r, "name") || "").trim();
+        if (!name) return null;
+        const supplier = cellNum(get(r, "price"));
+        const price = supplier != null ? +(supplier * markup).toFixed(2) : 0;
+        const mappedCompare = cellNum(get(r, "compareAt"));
+        const compareAt = mappedCompare != null && mappedCompare > price ? mappedCompare : +(price * 1.6).toFixed(2);
+        return {
+          id: slug(name),
+          name,
+          category: (get(r, "category") || "").trim() || defCat,
+          price,
+          compareAt,
+          rating: cellNum(get(r, "rating")) ?? 4.6,
+          reviews: Math.round(cellNum(get(r, "reviews")) ?? 0),
+          image: firstImage(get(r, "image")),
+          emoji: "🐾",
+          description: (get(r, "description") || "").trim(),
+          tags: [],
+          checkoutUrl: "",
+        };
+      }).filter(Boolean);
+      return { products: out, map, headers };
+    }
+
+    function readCsvSource() {
+      return new Promise((resolve) => {
+        const f = $("#csvFile").files[0];
+        if (f) { const fr = new FileReader(); fr.onload = () => resolve(fr.result); fr.readAsText(f); }
+        else resolve($("#csvText").value);
+      });
+    }
+    function mappingSummary(map, headers) {
+      const labels = { name: "Name", price: "Price", compareAt: "Compare-at", image: "Image", description: "Description", category: "Category", rating: "Rating", reviews: "Reviews" };
+      return Object.keys(labels).map((k) => `${labels[k]}: ${map[k] >= 0 ? "<strong>" + (headers[map[k]] || "?") + "</strong>" : "<em>not found</em>"}`).join(" · ");
+    }
+    $("#csvPreview").addEventListener("click", async () => {
+      const text = await readCsvSource();
+      if (!text.trim()) return toast("Add a CSV file or paste CSV first");
+      const { products: parsed, map, headers } = csvToProducts(text);
+      if (!parsed.length) { $("#csvReport").innerHTML = "No rows detected. Make sure the first line is the column headers."; return; }
+      const sample = parsed.slice(0, 3).map((p) => `• ${p.name} — $${p.price.toFixed(2)} (was $${p.compareAt.toFixed(2)})`).join("<br>");
+      $("#csvReport").innerHTML = `Detected <strong>${parsed.length}</strong> products.<br>Column mapping → ${mappingSummary(map, headers)}<br><br>Preview:<br>${sample}`;
+    });
+    $("#csvImport").addEventListener("click", async () => {
+      const text = await readCsvSource();
+      if (!text.trim()) return toast("Add a CSV file or paste CSV first");
+      const { products: parsed } = csvToProducts(text);
+      if (!parsed.length) return toast("No rows detected");
+      let added = 0, updated = 0;
+      parsed.forEach((p) => {
+        const idx = products.findIndex((x) => x.id === p.id);
+        if (idx >= 0) { products[idx] = p; updated++; } else { products.push(p); added++; }
+      });
+      save();
+      toast(`Imported ${added} new, ${updated} updated`);
+      $("#csvReport").innerHTML = `✓ Imported <strong>${added}</strong> new and updated <strong>${updated}</strong>. Review the list, then export.`;
+    });
 
     // toast
     let tt;

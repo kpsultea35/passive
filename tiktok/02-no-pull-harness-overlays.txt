@@ -1,0 +1,14 @@
+SCRIPT 02 — NO-PULL HARNESS — ON-SCREEN TEXT
+Canvas 1080x1920. Keep all text out of the bottom 20%. White bold font + soft shadow.
+
+[00:00 - 00:03] POSITION: TOP
+Stop letting your dog choke on walks 🛑
+
+[00:03 - 00:06] POSITION: TOP
+Front-clip = no more pulling
+
+[00:06 - 00:08] POSITION: CENTER
+Vet-recommended
+
+[00:08 - 00:10] POSITION: CENTER
+One walk and he stopped 🦮
