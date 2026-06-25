@@ -17,14 +17,23 @@ const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 /* ---------- Affiliate link builder ----------
-   Priority: explicit product.amazonUrl, else build /dp/<ASIN>.
+   Priority:
+     1. explicit product.amazonUrl
+     2. /dp/<ASIN> when a real ASIN is set
+     3. an Amazon search for the product name (graceful fallback so a
+        pick still lands somewhere real & tagged before you add an ASIN)
    The store's Associates tag is always appended as ?tag=...  */
+function isRealAsin(asin) {
+  return !!asin && /^[A-Z0-9]{10}$/i.test(asin) && !/EXAMPL/i.test(asin);
+}
 function amazonLink(p) {
   const tag = State.store.amazonTag || "";
   const domain = State.store.amazonDomain || "www.amazon.com";
   let url;
   try {
-    url = new URL(p.amazonUrl ? p.amazonUrl : `https://${domain}/dp/${encodeURIComponent(p.asin || "")}`);
+    if (p.amazonUrl) url = new URL(p.amazonUrl);
+    else if (isRealAsin(p.asin)) url = new URL(`https://${domain}/dp/${encodeURIComponent(p.asin)}`);
+    else url = new URL(`https://${domain}/s?k=${encodeURIComponent(p.name || "")}`);
   } catch {
     url = new URL(`https://${domain}/`);
   }
