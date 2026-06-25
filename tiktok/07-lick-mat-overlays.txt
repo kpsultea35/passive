@@ -1,0 +1,14 @@
+SCRIPT 07 — LICK MAT — ON-SCREEN TEXT
+Canvas 1080x1920. Keep all text out of the bottom 20%. White bold font + soft shadow.
+
+[00:00 - 00:03] POSITION: TOP
+Dog hates bath time? 🛁
+
+[00:03 - 00:06] POSITION: TOP
+Spread peanut butter
+
+[00:06 - 00:09] POSITION: CENTER
+Stick it to the wall
+
+[00:09 - 00:10] POSITION: CENTER
+Instant calm 🧈

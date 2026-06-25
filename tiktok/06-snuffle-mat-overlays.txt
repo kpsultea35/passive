@@ -1,0 +1,14 @@
+SCRIPT 06 — SNUFFLE MAT — ON-SCREEN TEXT
+Canvas 1080x1920. Keep all text out of the bottom 20%. White bold font + soft shadow.
+
+[00:00 - 00:03] POSITION: TOP
+Rainy day = crazy dog? try this 🌧️
+
+[00:03 - 00:07] POSITION: TOP
+Hide their kibble in it
+
+[00:07 - 00:10] POSITION: CENTER
+5 min sniffing = 30 min walking
+
+[00:10 - 00:12] POSITION: CENTER
+Calms them right down 🧠

@@ -1,0 +1,14 @@
+SCRIPT 04 — INTERACTIVE CAT BALL — ON-SCREEN TEXT
+Canvas 1080x1920. Keep all text out of the bottom 20%. White bold font + soft shadow.
+
+[00:00 - 00:03] POSITION: TOP
+POV: you leave and your cat gets bored 🐱
+
+[00:03 - 00:06] POSITION: TOP
+So I got the self-rolling ball
+
+[00:06 - 00:09] POSITION: CENTER
+It plays back 👀
+
+[00:09 - 00:11] POSITION: CENTER
+Auto-sleeps when she's done 😴

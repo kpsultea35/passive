@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track your order — Pawnest</title>
+  <meta name="description" content="Track your Pawnest order with your tracking number." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Track your order — Pawnest" />
+  <meta property="og:description" content="Track your Pawnest order with your tracking number." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark">🐾</span><span class="brand__name">Pawnest</span></a>
+      <nav class="nav" style="margin-left:auto">
+        <a href="index.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="policies.html">Shipping &amp; Returns</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page">
+    <h1>Track your order</h1>
+    <p class="lead">Pop in the tracking number from your shipping confirmation email and we'll pull up the latest status. Works with every carrier we ship through.</p>
+
+    <div class="prose" style="max-width:580px">
+      <form id="trackForm" class="track-form">
+        <div class="field"><label>Tracking number</label><input id="trackNum" required placeholder="e.g. LP123456789CN" autocomplete="off" /></div>
+        <button class="btn btn--primary btn--full" type="submit">Track my order →</button>
+      </form>
+
+      <div id="trackResult" class="track-result" style="display:none">
+        <p>Tracking <strong id="trackEcho"></strong>:</p>
+        <div class="actions">
+          <a id="link17" class="btn btn--primary" target="_blank" rel="noopener">Open tracking ↗</a>
+          <a id="linkParcels" class="btn btn--ghost" target="_blank" rel="noopener">Alternative tracker ↗</a>
+        </div>
+        <p class="muted small" style="margin-top:12px">Tracking opens in a new tab via a universal tracking service that supports 2,000+ carriers worldwide.</p>
+      </div>
+
+      <div class="faq" style="margin-top:24px">
+        <h3>Can't find your tracking number?</h3>
+        <p>It's in your shipping confirmation email (sent when your order leaves the warehouse). New orders can take 1–3 days to show a first scan. Still stuck? <a href="contact.html">Contact us</a> with your order details and we'll track it down.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div><span class="brand__mark">🐾</span> <strong>Pawnest</strong><p class="muted">Everything your best friend deserves.</p></div>
+      <div class="footer__links">
+        <a href="index.html">Shop</a><a href="about.html">About</a><a href="policies.html">Shipping &amp; Returns</a><a href="track.html">Track order</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+      </div>
+      <p class="muted small">© <span id="year"></span> Pawnest.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const numInput = document.getElementById("trackNum");
+    const result = document.getElementById("trackResult");
+
+    function showTracking(num) {
+      const n = num.trim();
+      if (!n) return;
+      const enc = encodeURIComponent(n);
+      document.getElementById("trackEcho").textContent = n;
+      document.getElementById("link17").href = "https://t.17track.net/en#nums=" + enc;
+      document.getElementById("linkParcels").href = "https://parcelsapp.com/en/tracking/" + enc;
+      result.style.display = "block";
+    }
+
+    document.getElementById("trackForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      showTracking(numInput.value);
+      // Open the primary tracker straight away on user action (avoids popup blockers)
+      window.open("https://t.17track.net/en#nums=" + encodeURIComponent(numInput.value.trim()), "_blank", "noopener");
+    });
+
+    // Deep link: track.html?num=XXXX  (use in shipping emails for 1-click tracking)
+    const pre = new URLSearchParams(location.search).get("num");
+    if (pre) { numInput.value = pre; showTracking(pre); }
+  </script>
+</body>
+</html>

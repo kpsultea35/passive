@@ -159,6 +159,7 @@ quoted fields and multi-image cells, and imports every row at once.
 ├── about.html               # About page
 ├── policies.html            # Shipping & Returns + FAQ
 ├── contact.html             # Contact form (free Formspree-ready)
+├── track.html               # Order tracking (universal carrier lookup, ?num= deep links)
 ├── privacy.html             # Privacy Policy (required by Stripe/PayPal)
 ├── terms.html               # Terms of Service (required by Stripe/PayPal)
 ├── 404.html                 # friendly not-found page

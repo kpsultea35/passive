@@ -33,6 +33,11 @@ Everything you need to assemble the first three faceless TikToks. For each scrip
 | 01 | Calming Donut Bed | ~12s | Cozy, emotional |
 | 02 | No-Pull Harness | ~10s | Before/after, upbeat |
 | 03 | Self-Cleaning Slicker Brush | ~9s | Satisfying / ASMR |
+| 04 | Interactive Cat Ball | ~11s | Playful, POV |
+| 05 | Car Seat Hammock | ~10s | Before/after, life-hack |
+| 06 | Snuffle Mat | ~12s | Calm, wholesome |
+| 07 | Calming Lick Mat | ~10s | Wholesome |
+| 08 | "5 things" Listicle | ~15s | Fast, high save-rate |
 
 > Footage rules (repeat): use your own clips, your supplier's permitted media, or
 > royalty-free libraries (Pexels, Pixabay, Mixkit, Coverr). Never re-upload another

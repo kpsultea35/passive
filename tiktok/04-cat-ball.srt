@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:03,000
+If your cat gets bored when you're out,
+
+2
+00:00:03,000 --> 00:00:07,000
+this ball rolls on its own, lights up, and dodges furniture,
+
+3
+00:00:07,000 --> 00:00:11,000
+then auto-sleeps when she's tired out.

@@ -1,0 +1,14 @@
+SCRIPT 05 — CAR SEAT HAMMOCK — ON-SCREEN TEXT
+Canvas 1080x1920. Keep all text out of the bottom 20%. White bold font + soft shadow.
+
+[00:00 - 00:03] POSITION: TOP
+Your back seat after one muddy walk 😩
+
+[00:03 - 00:06] POSITION: TOP
+Waterproof + scratch-proof
+
+[00:06 - 00:08] POSITION: CENTER
+Clips in 30 seconds
+
+[00:08 - 00:10] POSITION: CENTER
+Bye fur 👋
