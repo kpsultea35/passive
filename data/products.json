@@ -1,0 +1,116 @@
+{
+  "store": {
+    "name": "Nova Cart",
+    "tagline": "Curated gadgets & home finds, shipped worldwide",
+    "currency": "USD",
+    "currencySymbol": "$",
+    "supportEmail": "support@example.com",
+    "freeShippingOver": 35
+  },
+  "products": [
+    {
+      "id": "led-strip-rgb",
+      "name": "Smart LED Strip Lights (5m, RGB)",
+      "category": "Home",
+      "price": 18.99,
+      "compareAt": 32.0,
+      "rating": 4.7,
+      "reviews": 1284,
+      "image": "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=70",
+      "description": "App + remote controlled color-changing LED strip. Music sync, 16 million colors, easy peel-and-stick install. Perfect for bedrooms, desks, and gaming setups.",
+      "tags": ["bestseller", "trending"],
+      "checkoutUrl": ""
+    },
+    {
+      "id": "posture-corrector",
+      "name": "Adjustable Posture Corrector",
+      "category": "Wellness",
+      "price": 21.5,
+      "compareAt": 39.99,
+      "rating": 4.5,
+      "reviews": 842,
+      "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=70",
+      "description": "Breathable, lightweight back brace that gently trains your shoulders into a healthier position. Unisex, fully adjustable, wear under or over clothing.",
+      "tags": ["trending"],
+      "checkoutUrl": ""
+    },
+    {
+      "id": "mini-projector",
+      "name": "Portable Mini HD Projector",
+      "category": "Electronics",
+      "price": 56.0,
+      "compareAt": 89.0,
+      "rating": 4.6,
+      "reviews": 3105,
+      "image": "https://images.unsplash.com/photo-1626379953822-baec19c3accd?auto=format&fit=crop&w=800&q=70",
+      "description": "Pocket-sized projector with HDMI, USB, and phone mirroring. Up to 120\" screen, built-in speaker. Movie nights anywhere.",
+      "tags": ["bestseller"],
+      "checkoutUrl": ""
+    },
+    {
+      "id": "magnetic-charger",
+      "name": "3-in-1 Magnetic Wireless Charger",
+      "category": "Electronics",
+      "price": 29.99,
+      "compareAt": 49.99,
+      "rating": 4.8,
+      "reviews": 2210,
+      "image": "https://images.unsplash.com/photo-1591290619762-d2d3c1c8c1d6?auto=format&fit=crop&w=800&q=70",
+      "description": "Charge your phone, earbuds, and watch on one sleek foldable stand. Fast magnetic alignment, travel-friendly design.",
+      "tags": ["trending"],
+      "checkoutUrl": ""
+    },
+    {
+      "id": "pet-hair-roller",
+      "name": "Reusable Pet Hair Remover Roller",
+      "category": "Home",
+      "price": 14.99,
+      "compareAt": 24.99,
+      "rating": 4.4,
+      "reviews": 671,
+      "image": "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=70",
+      "description": "No sticky tape, no refills. Self-cleaning roller lifts pet hair from couches, beds, and clothes. Eco-friendly and endlessly reusable.",
+      "tags": [],
+      "checkoutUrl": ""
+    },
+    {
+      "id": "blender-bottle",
+      "name": "USB Rechargeable Portable Blender",
+      "category": "Kitchen",
+      "price": 24.0,
+      "compareAt": 42.0,
+      "rating": 4.5,
+      "reviews": 1893,
+      "image": "https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=800&q=70",
+      "description": "Blend smoothies on the go. 6 stainless blades, USB-C charging, leak-proof lid. Doubles as your travel cup.",
+      "tags": ["bestseller"],
+      "checkoutUrl": ""
+    },
+    {
+      "id": "car-vacuum",
+      "name": "Cordless Handheld Car Vacuum",
+      "category": "Auto",
+      "price": 33.5,
+      "compareAt": 59.0,
+      "rating": 4.3,
+      "reviews": 540,
+      "image": "https://images.unsplash.com/photo-1605164599901-db7f68c1b1a0?auto=format&fit=crop&w=800&q=70",
+      "description": "Powerful suction in a palm-sized body. Includes crevice and brush nozzles, washable filter, and a handy carry pouch.",
+      "tags": [],
+      "checkoutUrl": ""
+    },
+    {
+      "id": "sunset-lamp",
+      "name": "Sunset Projection Lamp",
+      "category": "Home",
+      "price": 16.99,
+      "compareAt": 29.99,
+      "rating": 4.7,
+      "reviews": 4502,
+      "image": "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=800&q=70",
+      "description": "Cast a warm golden sunset (or vivid rainbow) across any room. The viral mood light loved by creators for photos and cozy vibes.",
+      "tags": ["trending", "bestseller"],
+      "checkoutUrl": ""
+    }
+  ]
+}
