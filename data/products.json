@@ -6,7 +6,14 @@
     "currencySymbol": "$",
     "supportEmail": "hello@pawnest.shop",
     "freeShippingOver": 40,
-    "checkoutUrl": ""
+    "checkoutUrl": "",
+    "promoCode": "WELCOME10",
+    "coupons": [
+      { "code": "WELCOME10", "percent": 10 },
+      { "code": "PAWS15", "percent": 15 }
+    ],
+    "newsletterAction": "",
+    "analytics": { "provider": "", "id": "" }
   },
   "products": [
     {

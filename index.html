@@ -13,6 +13,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#14b8a6" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>" />
+  <link rel="manifest" href="manifest.webmanifest" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
@@ -48,8 +49,8 @@
       <div class="container hero__inner">
         <div class="hero__copy">
           <p class="eyebrow">New season drop</p>
-          <h1 class="hero__title" data-store-tagline>Curated gadgets & home finds, shipped worldwide</h1>
-          <p class="hero__sub">Trending products, honest prices, fast checkout. No subscriptions, no nonsense.</p>
+          <h1 class="hero__title" data-store-tagline>Everything your best friend deserves</h1>
+          <p class="hero__sub">Curated, trend-tested pet gear — calming beds, no-pull harnesses, grooming tools. Honest prices, fast checkout, shipped worldwide.</p>
           <div class="hero__cta">
             <a href="#catalog" class="btn btn--primary">Shop the collection</a>
             <a href="#how" class="btn btn--ghost">How it works</a>
@@ -71,6 +72,16 @@
       </div>
     </section>
 
+    <!-- Benefits bar -->
+    <section class="container">
+      <div class="benefits">
+        <div class="benefit"><span class="benefit__ic">🚚</span><div><strong>Free worldwide shipping</strong><span>On orders over <span data-free-ship></span></span></div></div>
+        <div class="benefit"><span class="benefit__ic">↩️</span><div><strong>30-day happiness guarantee</strong><span>Love it or your money back</span></div></div>
+        <div class="benefit"><span class="benefit__ic">🔒</span><div><strong>Secure checkout</strong><span>Encrypted card &amp; PayPal</span></div></div>
+        <div class="benefit"><span class="benefit__ic">💬</span><div><strong>Real human support</strong><span>We reply within a day</span></div></div>
+      </div>
+    </section>
+
     <!-- Category filter -->
     <section class="container">
       <div class="filters" id="filters"></div>
@@ -87,6 +98,18 @@
       </div>
     </section>
 
+    <!-- Reviews / social proof
+         NOTE: these are sample testimonials. Replace with REAL customer reviews
+         before launch — fake reviews break trust and may breach ad/marketplace rules. -->
+    <section class="container reviews" id="reviews">
+      <div class="section-head"><h2>Loved by pet parents</h2><span class="muted">★ 4.7 average</span></div>
+      <div class="reviews__grid">
+        <figure class="review"><div class="stars">★★★★★</div><blockquote>"The calming bed was an instant hit — my anxious rescue finally settles at night. Shipping was smooth and the updates were clear."</blockquote><figcaption>— Sample review, replace before launch</figcaption></figure>
+        <figure class="review"><div class="stars">★★★★★</div><blockquote>"The no-pull harness genuinely changed our walks. Easy to fit and my dog doesn't choke himself anymore."</blockquote><figcaption>— Sample review, replace before launch</figcaption></figure>
+        <figure class="review"><div class="stars">★★★★☆</div><blockquote>"Grooming glove gets so much loose fur off my cat and she actually enjoys it. Great value."</blockquote><figcaption>— Sample review, replace before launch</figcaption></figure>
+      </div>
+    </section>
+
     <!-- How it works -->
     <section class="container how" id="how">
       <h2>How it works</h2>
@@ -94,6 +117,30 @@
         <div class="how__step"><span class="how__num">1</span><h3>Browse & add to cart</h3><p>Pick from curated, trend-tested products. Everything ships directly to your door.</p></div>
         <div class="how__step"><span class="how__num">2</span><h3>Secure checkout</h3><p>Pay safely with card or PayPal. Your details are encrypted end-to-end.</p></div>
         <div class="how__step"><span class="how__num">3</span><h3>Tracked delivery</h3><p>Get a tracking link by email and watch your order make its way to you.</p></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container faq-section" id="faq">
+      <h2>Questions, answered</h2>
+      <details class="faq"><summary>How long does shipping take?</summary><p>Most orders arrive in 7–15 business days. You'll get a tracking link by email as soon as it ships. Full details on our <a href="policies.html">Shipping &amp; Returns</a> page.</p></details>
+      <details class="faq"><summary>What's your return policy?</summary><p>30-day happiness guarantee. If it's not right, contact us for a replacement or refund — see <a href="policies.html">Shipping &amp; Returns</a>.</p></details>
+      <details class="faq"><summary>Is checkout secure?</summary><p>Yes. Payments are processed by trusted providers (Stripe / PayPal) and your card details never touch our site.</p></details>
+      <details class="faq"><summary>Do you ship internationally?</summary><p>We do — worldwide. Free shipping kicks in on orders over <span data-free-ship></span>.</p></details>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="container">
+      <div class="newsletter">
+        <div>
+          <h2>Join the pack 🐾</h2>
+          <p class="muted">Get <strong><span data-promo-code>WELCOME10</span></strong> for your first order, plus new arrivals and deals.</p>
+        </div>
+        <form id="newsletterForm" class="newsletter__form">
+          <input type="email" name="email" required placeholder="your@email.com" aria-label="Email address" />
+          <button class="btn btn--primary" type="submit">Get my code</button>
+        </form>
+        <p class="coupon-msg" id="newsletterMsg"></p>
       </div>
     </section>
   </main>
@@ -140,6 +187,24 @@
 
   <!-- Toast -->
   <div class="toast" id="toast"></div>
+
+  <!-- Honest social-proof ticker (real ratings data) -->
+  <div class="proof" id="proof"></div>
+
+  <!-- Email-capture popup -->
+  <div class="promo-overlay" id="promoOverlay"></div>
+  <div class="promo" id="promoPopup" role="dialog" aria-modal="true" aria-label="Newsletter signup">
+    <button class="icon-btn promo__close" id="promoClose" aria-label="Close">✕</button>
+    <div class="promo__emoji">🐾</div>
+    <h3>Get <span data-promo-code>WELCOME10</span> off your first order</h3>
+    <p class="muted">Join the Pawnest pack for a welcome discount, new arrivals, and exclusive deals.</p>
+    <form id="promoForm">
+      <input type="email" name="email" required placeholder="your@email.com" aria-label="Email address" />
+      <button class="btn btn--primary btn--full" type="submit">Unlock my discount</button>
+    </form>
+    <p class="coupon-msg" id="promoFormMsg"></p>
+    <p class="muted small">No spam — unsubscribe anytime.</p>
+  </div>
 
   <script src="assets/js/store.js"></script>
 </body>

@@ -74,6 +74,26 @@ Create a product on [Gumroad](https://gumroad.com), copy its share link into `"c
 
 ---
 
+## 📈 Built-in growth & conversion features
+
+All configured in the `store` block of `data/products.json` — no code needed.
+
+| Feature | What it does | How to set up |
+|---------|-------------|---------------|
+| **Coupon codes** | Working % discounts at checkout | Edit the `coupons` array, e.g. `{ "code": "WELCOME10", "percent": 10 }`. Set `promoCode` to the one you advertise. |
+| **Email-capture popup** | Offers the welcome code on exit-intent / after 12s, once per visitor | Free [Formspree](https://formspree.io) form → paste its URL into `newsletterAction`. Works (reveals the code) even before you set it up. |
+| **Footer newsletter** | Always-on signup with the same incentive | Same `newsletterAction`. |
+| **SEO structured data** | Auto-adds Product/Rating/Price JSON-LD so Google can show rich results | Automatic — nothing to do. |
+| **Analytics** | GA4 or Plausible, privacy-friendly | Set `analytics` to `{ "provider": "ga4", "id": "G-XXXX" }` or `{ "provider": "plausible", "id": "yourdomain.com" }`. Off until you add an id. Key events (add_to_cart, begin_checkout, purchase, newsletter_signup) fire automatically. |
+| **Honest social proof** | A small ticker showing your real top-rated products | Automatic, uses your real ratings — no fake "someone just bought" popups. |
+| **PWA install** | Visitors can "Add to Home Screen" | `manifest.webmanifest` included. |
+
+> ⚠️ The homepage **reviews** are sample placeholders. Replace them in `index.html`
+> with real customer reviews before launch — fake reviews break trust and can violate
+> ad-platform and marketplace rules.
+
+---
+
 ## 🛍️ Add / edit products
 
 Everything lives in [`data/products.json`](data/products.json):
