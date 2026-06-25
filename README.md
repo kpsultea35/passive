@@ -1,126 +1,130 @@
-# 🛒 Nova Cart — Free Dropshipping Store Starter
+# 🐾 Pawnest — Free Pet Dropshipping Store
 
-A complete, **$0-to-run** dropshipping storefront. No backend, no monthly fees, no
-Shopify subscription. It's a fast static site you can host for free and a simple
-`products.json` you edit to list whatever you want to sell.
+A complete, **$0-to-run** dropshipping storefront for a pet niche. No backend, no
+monthly fees, no Shopify subscription. It's a fast static site you host for free and
+a simple `products.json` you edit to list whatever you sell.
 
-> **What "free" means here:** free hosting, free store software (this repo), and
-> free checkout *links*. You only ever pay a per-sale processing fee (~2.9% + 30¢)
-> **after** a customer actually pays — i.e. out of money you've already earned.
-> There is no upfront cost.
+> **What "free" means:** free hosting, free store software (this repo), and free
+> checkout *links*. You only pay a per-sale processing fee (~2.9% + 30¢) **after** a
+> customer actually pays — i.e. out of money you've already earned. Zero upfront cost.
+
+**Why the pet niche?** Pet parents are emotional, loyal, repeat buyers, and there's an
+endless supply of viral, high-margin products (calming beds, no-pull harnesses,
+self-cleaning brushes). It's one of the most reliable niches for a first store.
 
 ---
 
 ## ✨ What you get
 
-- Responsive storefront with hero, category filters, and live search
-- Product grid + quick-view modal with ratings, discounts, "bestseller" badges
+- 12 curated, trend-tested pet products (edit freely in `data/products.json`)
+- Responsive storefront — hero, category filters (Comfort, Grooming, Walks, Feeding, Play, Travel), live search
 - Slide-out cart with quantity controls and a **free-shipping progress bar**
-- Cart saved in the browser (`localStorage`) — survives refreshes
-- Three checkout options, including a **zero-setup email order** that works today
-- One-click deploy to GitHub Pages (workflow included)
+- **Full checkout flow** — shipping form + order summary, payment-link ready, with a zero-setup email-order fallback that works *today*
+- Graceful image fallback (a branded tile shows if a product photo ever fails)
+- **About** and **Shipping & Returns** pages (trust = conversions)
+- One-click free deploy to GitHub Pages (workflow included)
 
 ---
 
-## 🚀 Get it live in 10 minutes (100% free)
+## 🚀 Go live in ~10 minutes (100% free)
 
-### 1. See it locally
+### 1. Preview locally
 Browsers block `fetch()` on `file://`, so run a tiny local server:
-
 ```bash
-# Python (already installed on most machines)
-python3 -m http.server 8000
-# then open http://localhost:8000
+python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
-### 2. Deploy for free — pick one host
+### 2. Deploy free — pick one host
+**GitHub Pages (already wired up):** push this repo → **Settings → Pages → Source: GitHub Actions**. The included workflow publishes on every push. URL: `https://<username>.github.io/<repo>/`.
 
-**Option A — GitHub Pages (already wired up)**
-1. Push this repo to GitHub.
-2. Go to **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. The included `.github/workflows/deploy.yml` publishes your store on every push.
-   Your URL: `https://<your-username>.github.io/<repo>/`.
-
-**Option B — Netlify / Cloudflare Pages / Vercel (free tier)**
-- Drag-and-drop this folder, or connect the repo. No build command, publish
-  directory = `/` (root). Done.
-
-All four give you free HTTPS and a free `*.app`/`*.dev` domain.
+**Netlify / Cloudflare Pages / Vercel:** connect the repo or drag-drop the folder. No build command, publish directory = `/`. All give free HTTPS.
 
 ---
 
-## 🛍️ Add your own products
+## 💳 Connect real payments (free to set up)
 
-Everything lives in [`data/products.json`](data/products.json). Edit the `store`
-block and the `products` array:
+The store works **out of the box** with an email-order checkout (Strategy 3 below).
+When you're ready to take card payments, add a free payment link — no monthly fee, you
+only pay the standard ~2.9% + 30¢ per sale.
 
+The `checkout()` flow tries these in order:
+
+| # | Method | How to enable |
+|---|--------|---------------|
+| 1 | **Per-product payment link** | Put a link in a product's `"checkoutUrl"` |
+| 2 | **Store-wide payment link** | Put a link in the `store.checkoutUrl` field |
+| 3 | **Email order (default)** | Nothing to do — already works |
+
+### Option A — Stripe Payment Links (recommended)
+1. Create a free [Stripe account](https://dashboard.stripe.com/register).
+2. **Products → Add product** → enter name + price → **Save**.
+3. On the product, click **Create payment link** → copy the URL (looks like `https://buy.stripe.com/...`).
+4. Paste it into that product's `"checkoutUrl"` in `data/products.json`.
+5. In the payment link settings, turn on **Collect shipping address** so you get the customer's address automatically.
+
+### Option B — PayPal
+1. Create a free [PayPal business account](https://www.paypal.com/business).
+2. Use **PayPal.me** (`https://paypal.me/yourname/19.99`) or a **Smart Payment Button** / invoice.
+3. Paste the link into `"checkoutUrl"`.
+
+### Option C — Gumroad (easiest, no business account)
+Create a product on [Gumroad](https://gumroad.com), copy its share link into `"checkoutUrl"`. Free to start.
+
+> Tip: per-product links give the cleanest experience. For multi-item carts, either set a single `store.checkoutUrl`, or keep the email checkout (Strategy 3) which sends you the full order + shipping details to invoice.
+
+---
+
+## 🛍️ Add / edit products
+
+Everything lives in [`data/products.json`](data/products.json):
 ```json
 {
   "id": "unique-handle",
   "name": "Product name",
-  "category": "Home",
+  "category": "Grooming",
   "price": 18.99,
-  "compareAt": 32.00,          // optional "was" price → shows a discount badge
+  "compareAt": 34.00,        // optional "was" price → shows a discount badge
   "rating": 4.7,
-  "reviews": 1284,
+  "reviews": 12940,
   "image": "https://.../photo.jpg",
-  "description": "Sales copy that sells the benefit, not the feature.",
+  "emoji": "🪮",              // shown if the image fails to load
+  "description": "Sell the benefit, not the feature.",
   "tags": ["bestseller", "trending"],
-  "checkoutUrl": ""            // paste a payment link here (see below)
+  "checkoutUrl": ""          // paste a payment link (see above)
 }
 ```
 
-**Where to find products to sell (free to browse):** AliExpress, CJ Dropshipping,
-Zendrop, Spocket, AutoDS. Copy the product image + write your own description, and
-set your `price` above your supplier cost — the gap is your profit.
+**Where to source pet products (free to browse):** AliExpress, CJ Dropshipping,
+Zendrop, Spocket, AutoDS. Copy the product image, write your own description, and set
+your `price` above supplier cost — the gap is your profit. **Dropshipping flow:** customer
+pays → you order from the supplier shipping to their address → supplier ships direct → you keep the margin.
 
 ---
 
-## 💳 Getting paid (three free options)
-
-The store tries these in order — you don't have to configure anything to start.
-
-| # | Method | Setup | When to use |
-|---|--------|-------|-------------|
-| 1 | **Per-product payment link** — set `checkoutUrl` on a product | Create a free [Stripe Payment Link](https://stripe.com/payments/payment-links), [PayPal.me](https://paypal.me), or [Gumroad](https://gumroad.com) link and paste it in | Best for real card payments |
-| 2 | **Store-wide payment link** — add `"checkoutUrl"` to the `store` block | Same as above, one link for the whole cart | Simple single-link checkout |
-| 3 | **Email order (default, zero setup)** | Just set `store.supportEmail` | Validate demand *today* before signing up for anything |
-
-> Stripe/PayPal Payment Links cost **nothing** to create. You're only charged the
-> standard processing fee when a customer pays — so checkout is genuinely free
-> until you make money.
-
-### Fulfilling an order (dropshipping flow)
-1. Customer pays (or emails you the order).
-2. You place the same order with your supplier, shipping to the customer's address.
-3. Supplier ships directly. You keep the margin. No inventory, no upfront stock.
-
----
-
-## 🎨 Make it yours
-
-- **Brand name / tagline / currency / free-shipping threshold** → top of `products.json`.
+## 🎨 Make it your brand
+- **Name / tagline / currency / free-shipping threshold / support email** → top of `products.json` (the storefront reads them live). Update the hardcoded "Pawnest" in `about.html` / `policies.html` too.
 - **Colors** → CSS variables at the top of `assets/css/styles.css` (`--brand`, `--accent`, …).
-- **Logo** → swap the 🛒 emoji in `index.html` and the favicon line.
+- **Logo** → swap the 🐾 emoji in the HTML files and favicon lines.
 
 ---
 
-## 📂 Project structure
-
+## 📂 Structure
 ```
 .
-├── index.html               # the storefront
+├── index.html               # storefront
+├── about.html               # About page
+├── policies.html            # Shipping & Returns + FAQ
 ├── assets/
-│   ├── css/styles.css        # all styling (dark, modern, responsive)
-│   └── js/store.js           # catalog, cart, checkout — no dependencies
-├── data/products.json        # ← your store config + product catalog
+│   ├── css/styles.css        # warm, responsive theme
+│   └── js/store.js           # catalog, cart, checkout — zero dependencies
+├── data/products.json        # ← your store config + catalog
 └── .github/workflows/        # free auto-deploy to GitHub Pages
 ```
 
-## ⚖️ A note on doing this legally & well
-- Be honest about shipping times (supplier shipping can be slow — say so).
-- Have a returns/contact policy and a real support email.
+## ⚖️ Do it right
+- Be honest about shipping times (supplier shipping is slower than Amazon — the policies page says so).
+- Keep a real support email and a returns policy (both included).
 - Check your country's rules on registering as a seller / collecting tax.
-- Don't reuse trademarked brands or copyrighted images you don't have rights to.
+- Don't reuse trademarked brands or images you don't have rights to.
 
-That's it — edit `products.json`, deploy free, share your link, and start selling. 🎉
+Edit `products.json`, deploy free, share your link, and start selling. 🐾

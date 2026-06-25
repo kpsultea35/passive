@@ -15,6 +15,19 @@ const State = {
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 const money = (n) => `${State.store.currencySymbol || "$"}${Number(n).toFixed(2)}`;
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// Graceful image fallback — if a product photo fails to load, show a branded tile
+function imgTag(p, extraClass = "") {
+  return `<img class="${extraClass}" src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy"
+    data-emoji="${esc(p.emoji || "🐾")}" data-name="${esc(p.name)}" onerror="imgFallback(this)" />`;
+}
+window.imgFallback = function (img) {
+  const el = document.createElement("div");
+  el.className = "img-fallback";
+  el.innerHTML = `<div class="emoji">${img.dataset.emoji || "🐾"}</div><div class="lbl">${img.dataset.name || ""}</div>`;
+  img.replaceWith(el);
+};
 
 /* ---------- Boot ---------- */
 async function init() {
@@ -91,7 +104,7 @@ function renderGrid() {
       return `
       <article class="card">
         <div class="card__media" data-view="${p.id}">
-          <img src="${p.image}" alt="${p.name}" loading="lazy" />
+          ${imgTag(p)}
           ${badge}
           ${save > 0 ? `<span class="badge badge--save">-${save}%</span>` : ""}
         </div>
@@ -117,7 +130,7 @@ function openModal(id) {
   const save = p.compareAt ? Math.round(((p.compareAt - p.price) / p.compareAt) * 100) : 0;
   $("#productModal").innerHTML = `
     <div class="modal__grid">
-      <div class="modal__media"><img src="${p.image}" alt="${p.name}" /></div>
+      <div class="modal__media">${imgTag(p)}</div>
       <div class="modal__body">
         <button class="icon-btn modal__close" data-close-modal>✕</button>
         <span class="card__cat">${p.category}</span>
@@ -182,7 +195,7 @@ function renderCart() {
       .map(
         (e) => `
       <div class="cart-item">
-        <img src="${e.product.image}" alt="${e.product.name}" />
+        ${imgTag(e.product)}
         <div>
           <div class="cart-item__name">${e.product.name}</div>
           <div class="cart-item__price">${money(e.product.price)}</div>
@@ -234,8 +247,9 @@ function closeCart() {
 function checkout() {
   const entries = cartEntries();
   if (!entries.length) return;
+  closeCart();
 
-  // Strategy 1: single-item cart with its own payment link
+  // Strategy 1: single-item cart with its own payment link → straight to secure payment
   if (entries.length === 1 && entries[0].product.checkoutUrl) {
     window.open(entries[0].product.checkoutUrl, "_blank");
     return;
@@ -245,16 +259,68 @@ function checkout() {
     window.open(State.store.checkoutUrl, "_blank");
     return;
   }
-  // Strategy 3: zero-setup email order (works immediately)
+  // Strategy 3: zero-setup checkout modal that emails you the order (works immediately)
+  openCheckout(entries);
+}
+
+function openCheckout(entries) {
+  const summary = entries
+    .map((e) => `<div class="checkout__line"><span>${e.qty} × ${esc(e.product.name)}</span><span>${money(e.product.price * e.qty)}</span></div>`)
+    .join("");
+  const total = cartTotal();
+  const threshold = State.store.freeShippingOver || 0;
+  const shipping = !threshold || total >= threshold ? 0 : 4.99;
+
+  $("#productModal").innerHTML = `
+    <div class="checkout">
+      <button class="icon-btn modal__close" data-close-modal>✕</button>
+      <h2>Checkout</h2>
+      <p class="muted small">Secure order — we'll confirm by email and send tracking.</p>
+      <div class="checkout__summary">
+        ${summary}
+        <div class="checkout__line"><span>Shipping</span><span>${shipping === 0 ? "FREE" : money(shipping)}</span></div>
+        <div class="checkout__line total"><span>Total</span><span>${money(total + shipping)}</span></div>
+      </div>
+      <form id="checkoutForm">
+        <div class="field"><label>Full name</label><input name="name" required placeholder="Jane Doe" /></div>
+        <div class="field"><label>Email</label><input name="email" type="email" required placeholder="jane@email.com" /></div>
+        <div class="field"><label>Shipping address</label><textarea name="address" required rows="2" placeholder="Street, city, postal code"></textarea></div>
+        <div class="field--row">
+          <div class="field"><label>Country</label><input name="country" required placeholder="United States" /></div>
+          <div class="field"><label>Phone (optional)</label><input name="phone" placeholder="+1 …" /></div>
+        </div>
+        <button class="btn btn--primary btn--full" type="submit">Place order →</button>
+        <p class="pay-note">🔒 You'll be emailed a secure payment link to complete your purchase.</p>
+      </form>
+    </div>`;
+
+  $("#modalOverlay").classList.add("open");
+  $("#productModal").classList.add("open");
+  $("#checkoutForm").addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    submitOrder(new FormData(ev.target), entries, shipping);
+  });
+}
+
+function submitOrder(form, entries, shipping) {
   const lines = entries
-    .map((e) => `• ${e.qty} × ${e.product.name} — ${money(e.product.price * e.qty)}`)
+    .map((e) => `- ${e.qty} x ${e.product.name} (${e.product.id}) = ${money(e.product.price * e.qty)}`)
     .join("%0D%0A");
-  const total = money(cartTotal());
+  const total = money(cartTotal() + shipping);
   const to = State.store.supportEmail || "your@email.com";
-  const subject = encodeURIComponent(`New order from ${State.store.name || "the store"}`);
-  const body = `Hi! I'd like to order:%0D%0A%0D%0A${lines}%0D%0A%0D%0ATotal: ${total}%0D%0A%0D%0AShipping name:%0D%0AAddress:%0D%0A`;
+  const get = (k) => encodeURIComponent(form.get(k) || "");
+  const subject = encodeURIComponent(`New order — ${State.store.name || "store"}`);
+  const body =
+    `New order:%0D%0A%0D%0A${lines}%0D%0A` +
+    `Shipping: ${shipping === 0 ? "FREE" : money(shipping)}%0D%0ATotal: ${total}%0D%0A%0D%0A` +
+    `Name: ${get("name")}%0D%0AEmail: ${get("email")}%0D%0AAddress: ${get("address")}%0D%0A` +
+    `Country: ${get("country")}%0D%0APhone: ${get("phone")}%0D%0A`;
   window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-  toast("Opening your email to place the order…");
+  closeModal();
+  State.cart = {};
+  saveCart();
+  renderCart();
+  toast("Order sent! Check your email to confirm. 🎉");
 }
 
 /* ---------- Toast ---------- */
