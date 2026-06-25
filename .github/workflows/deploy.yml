@@ -36,6 +36,9 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          # Auto-enable GitHub Pages (Actions source) so no manual repo setting is needed.
+          enablement: true
 
       - name: Build (validate catalog, refresh data, generate sitemap)
         env:
