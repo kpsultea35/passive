@@ -2,7 +2,7 @@ name: Build & deploy Pickwise
 
 on:
   push:
-    branches: ["main", "claude/magical-bardeen-oygvkk"]
+    branches: ["main", "claude/charming-cray-bhjoq2", "claude/magical-bardeen-oygvkk"]
   workflow_dispatch:
   schedule:
     # Daily at 06:00 UTC — refreshes live Amazon data (if PA-API secrets are set)
