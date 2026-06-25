@@ -114,12 +114,25 @@ pays → you order from the supplier shipping to their address → supplier ship
 ├── index.html               # storefront
 ├── about.html               # About page
 ├── policies.html            # Shipping & Returns + FAQ
+├── contact.html             # Contact form (free Formspree-ready)
+├── privacy.html             # Privacy Policy (required by Stripe/PayPal)
+├── terms.html               # Terms of Service (required by Stripe/PayPal)
+├── 404.html                 # friendly not-found page
+├── robots.txt, sitemap.xml  # SEO basics (set your live URL)
+├── MARKETING.md             # ad copy, captions & launch checklist
 ├── assets/
 │   ├── css/styles.css        # warm, responsive theme
 │   └── js/store.js           # catalog, cart, checkout — zero dependencies
 ├── data/products.json        # ← your store config + catalog
 └── .github/workflows/        # free auto-deploy to GitHub Pages
 ```
+
+### Before you take real payments
+Stripe/PayPal require a few things live on your site — all included here, just customize:
+1. **Privacy Policy** (`privacy.html`) and **Terms** (`terms.html`) — fill in your business name/address.
+2. A working **Contact** method (`contact.html`) — add your free [Formspree](https://formspree.io) form ID.
+3. Clear **Shipping & Returns** info (`policies.html`) — already written.
+4. Update the store URL in `sitemap.xml`, `robots.txt`, and the `og:` meta tags.
 
 ## ⚖️ Do it right
 - Be honest about shipping times (supplier shipping is slower than Amazon — the policies page says so).
